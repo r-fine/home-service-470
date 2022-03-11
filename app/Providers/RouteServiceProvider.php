@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,17 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    // public const HOME = '/dashboard';
+    
+    public static function HOME() {
+        if (Auth::user()->hasRole('admin')) {
+            return '/admin/dashboard';
+        }elseif(Auth::user()->hasRole('s_provider')) {
+            return '/provider/dashboard';
+        }elseif(Auth::user()->hasRole('customer')) {
+            return '/user/dashboard';
+        }
+    }
 
     /**
      * Define your route model bindings, pattern filters, etc.
