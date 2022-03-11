@@ -61,12 +61,12 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    {{-- <li>
-                        <form class="d-none" id="logOutForm" method="post" action="">
+                    <li>
+                        <form id="logOutForm" method="POST" action="{{ route('logout') }}">
                             @csrf
                         </form>
                         <a class="dropdown-item" href="#" onclick="logOut()">Sign out</a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -96,10 +96,10 @@
         })
     })()
 
-    // function logOut() {
-    //     document.getElementById('logOutForm').submit();
-    //     return false;
-    // }
+    function logOut() {
+        document.getElementById('logOutForm').submit();
+        return false;
+    }
 </script>
 
 @endsection
