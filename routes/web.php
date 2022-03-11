@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Routes for Admin
@@ -26,6 +26,21 @@ Route::prefix('admin')->group( function () {
         });
     });
 });
+
+//auth route for both 
+// Route::group(['middleware' => ['auth']], function() { 
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// });
+
+// for customers
+// Route::group(['middleware' => ['auth', 'role:user']], function() { 
+//     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@myprofile')->name('dashboard.myprofile');
+// });
+
+// for service providers
+// Route::group(['middleware' => ['auth', 'role:blogwriter']], function() { 
+//     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@postcreate')->name('dashboard.postcreate');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
