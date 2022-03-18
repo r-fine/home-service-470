@@ -69,14 +69,14 @@
                             @auth
                                 @if(Auth::user()->hasRole('admin'))
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                             Admin Dashboard
                                         </a>
                                     </li>
                                 @elseif(Auth::user()->hasRole('s_provider'))
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            DASHBOARD
+                                        <a class="dropdown-item" href="{{ route('provider.dashboard') }}">
+                                            Provider Dashboard
                                         </a>
                                     </li>
                                 @else

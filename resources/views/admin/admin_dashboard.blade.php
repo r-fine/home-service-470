@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 @include('extras.svg-dashboard')
 
 @section('content')

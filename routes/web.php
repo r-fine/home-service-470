@@ -18,32 +18,12 @@ Route::get('/', function () {
 });
 
 // Routes for Admin
-Route::prefix('admin')->group( function () {
+Route::prefix('admin')->group(function () {
     Route::name('admin.')->group(function () {
-        Route::group(['middleware' => ['auth','role:admin']], function() {
+        Route::group(['middleware' => ['auth', 'role:admin']], function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
         });
     });
 });
 
-//auth route for both 
-// Route::group(['middleware' => ['auth']], function() { 
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// });
-
-// for customers
-// Route::group(['middleware' => ['auth', 'role:user']], function() { 
-//     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@myprofile')->name('dashboard.myprofile');
-// });
-
-// for service providers
-// Route::group(['middleware' => ['auth', 'role:blogwriter']], function() { 
-//     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@postcreate')->name('dashboard.postcreate');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
