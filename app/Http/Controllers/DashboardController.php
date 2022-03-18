@@ -9,11 +9,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
         if (Auth::user()->hasRole('admin')) {
             return view('admin.admin_homepage');
-        }elseif(Auth::user()->hasRole('s_provider') && Auth::user()->is_s_provider==1) {
-            return view('dashboard');
-        }elseif(Auth::user()->hasRole('customer')) {
+        } elseif (Auth::user()->hasRole('s_provider') && Auth::user()->is_verified == 1) {
+            return view('s_provider.s_provider_homepage');
+        } elseif (Auth::user()->hasRole('s_provider') && Auth::user()->is_verified == 0) {
+            return view('address.create-address');
+        } elseif (Auth::user()->hasRole('customer')) {
             return view('dashboard');
         }
     }
