@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -24,6 +25,23 @@ Route::prefix('admin')->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         });
     });
+});
+
+// Routes for Service Provider
+Route::prefix('provider')->group(function () {
+    Route::name('provider.')->group(function () {
+        Route::group(['middleware' => ['auth', 'role:s_provider']], function () {
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        });
+    });
+});
+
+//auth route for Address CRUD operations
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/address/create', [AddressController::class, 'create'])->name('address.create');
+    Route::post('/address/store', [AddressController::class, 'store'])->name('address.store');
+    Route::get('/address/{id}/edit', [AddressController::class, 'edit'])->name('address.edit');
+    Route::put('/address/{id}', [AddressController::class, 'update'])->name('address.update');
 });
 
 require __DIR__ . '/auth.php';
