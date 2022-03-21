@@ -23,4 +23,9 @@ class Address extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function getFullAddress()
+    {
+        return $this->address_line . ' ' . $this->address_line_2;
+    }
 }

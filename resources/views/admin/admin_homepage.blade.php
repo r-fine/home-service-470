@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard')
+@extends('layouts.admin_dashboard')
 
 @section('admin_content')
 
@@ -55,15 +55,15 @@
         </div>
         <div class="col">
             <div class="col-md">
-                <div class="card text-center text-white mb-5"
+                <a href="{{ route('admin.unverified.provider.list') }}" class="card text-decoration-none text-center text-white mb-5"
                     style="height: 180px; background-color: rgb(95, 185, 140);">
                     <div class="card-header">
                         <h4 class="card-title">Provider Approval Pending</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $unverified_providers }}</h1>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col">

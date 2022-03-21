@@ -16,7 +16,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('address.create-address');
+        return view('address.create_address');
     }
 
     /**
@@ -53,7 +53,7 @@ class AddressController extends Controller
     public function edit($id)
     {
         $address = Address::find($id);
-        return view('address.edit-address', compact('address'));
+        return view('address.edit_address', compact('address'));
     }
 
     /**

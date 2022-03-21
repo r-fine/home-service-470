@@ -13,7 +13,7 @@ class DashboardController extends Controller
         if (Auth::user()->hasRole('s_provider') && Auth::user()->is_verified == 1) {
             return view('s_provider.s_provider_homepage');
         } elseif (Auth::user()->hasRole('s_provider') && Auth::user()->is_verified == 0) {
-            return view('address.create-address');
+            return view('address.create_address');
         } elseif (Auth::user()->hasRole('customer')) {
             return view('dashboard');
         }
