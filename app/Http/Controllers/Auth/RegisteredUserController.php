@@ -47,8 +47,6 @@ class RegisteredUserController extends Controller
 
         $user->attachRole($request->role_id);
 
-        // if ($user->hasRole('s_provider')) $user->is_verified=1;
-
         event(new Registered($user));
 
         Auth::login($user);

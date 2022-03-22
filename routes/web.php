@@ -28,11 +28,15 @@ Route::prefix('provider')->group(function () {
 });
 
 //auth route for Address CRUD operations
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/address/create', [AddressController::class, 'create'])->name('address.create');
-    Route::post('/address/store', [AddressController::class, 'store'])->name('address.store');
-    Route::get('/address/{id}/edit', [AddressController::class, 'edit'])->name('address.edit');
-    Route::put('/address/{id}', [AddressController::class, 'update'])->name('address.update');
+Route::prefix('address')->group(function () {
+    Route::name('address.')->group(function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('/create', [AddressController::class, 'create'])->name('create');
+            Route::post('/store', [AddressController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [AddressController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [AddressController::class, 'update'])->name('update');
+        });
+    });
 });
 
 require __DIR__ . '/auth.php';
