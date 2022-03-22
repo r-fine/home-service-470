@@ -1,3 +1,4 @@
+@section('title', 'Confirm Password')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

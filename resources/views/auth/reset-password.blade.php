@@ -1,3 +1,4 @@
+@section('title', 'Reset Password')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

@@ -1,4 +1,5 @@
 @extends('../layouts/base')
+@section('title', 'Home')
 
 @section('content')
 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center my-5 mx-5 px-5">

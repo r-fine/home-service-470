@@ -1,4 +1,6 @@
 @extends('layouts/admin_dashboard')
+@section('title', 'Verify Provider')
+
 @section('admin_content')
 @if (Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">

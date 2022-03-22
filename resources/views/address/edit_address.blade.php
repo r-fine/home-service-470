@@ -1,4 +1,6 @@
 @extends('../layouts/dashboard')
+@section('title', 'Update Address')
+
 @section('content')
 <section class="my-2 pt-3">
     <div class="mx-auto mb-5" style="max-width: 550px;">
