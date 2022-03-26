@@ -4,7 +4,7 @@
 @section('admin_content')
 
 <div class="container my-5">
-    <div class="container px-4 px-lg-5 mt-5">s
+    <div class="container px-4 px-lg-5 mt-5">
         <hr>
         <h1 class="text-center text-primary mb-3">Category List</h1>
         <hr>
@@ -27,8 +27,8 @@
             <thead>
                 <tr>
                     <th scope="col">Image</th>
-                    {{-- <th scope="col">Is root</th> --}}
                     <th scope="col">Title</th>
+                    <th scope="col">Is root</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -37,8 +37,8 @@
                 @foreach ($categories as $cat)
                 <tr>
                     <td><img src="{{ asset('images/category/' . $cat->image) }}" alt="image" width="50px"></td>
-                    {{-- <td>{{ $cat-> }}</td> --}}
                     <td>{{ $cat->title }}</td>
+                    <td>{{ $cat->isRoot() }}</td>
                     <td>
                         <a href="{{ route('admin.categories.edit', $cat) }}">
                             <i class="bi bi-pencil-square fs-5"></i>

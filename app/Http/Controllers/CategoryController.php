@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $categories = Category::whereNull('parent_id')->get();
+        return view('category.create', compact('categories'));
     }
 
     /**
@@ -38,23 +39,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'parent_id' => 'nullable',
             'title' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
-        $request['slug'] = Str::slug($request->title);
 
-        // $destinationPath = 'images/category/';
         $imageName = time() . "." . $request->slug . "." . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images/category'), $imageName);
 
         // Category::create($request->all());
-        Category::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'image' => $imageName
-        ]);
+        $category = new Category();
+        $category->title = $request->title;
+        $category->slug = Str::slug($request->title);
+        $category->description = $request->description;
+        $category->image = $imageName;
+        $category->parent_id = $request->parent_id;
+        $category->save();
 
         return back()->with('success', 'Category added successfully');
     }
@@ -67,7 +68,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
+        $categories = Category::whereNull('parent_id')->get();
+        return view('category.edit', compact('categories', 'category'));
     }
 
     /**
@@ -85,13 +87,12 @@ class CategoryController extends Controller
             'description' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048'
         ]);
-        $request['slug'] = Str::slug($request->title);
 
-        $category->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-        ]);
+        $category->title = $request->title;
+        $category->slug = Str::slug($request->title);
+        $category->description = $request->description;
+        $category->parent_id = $request->parent_id;
+        $category->save();
 
         if ($request->image) {
             $imageName = time() . "." . $request->slug . "." . $request->image->getClientOriginalExtension();

@@ -18,6 +18,19 @@
             </div>
             @endif
             <div class="form-group my-2">
+                <label for="parent_id">Parent category</label>
+                <select name="parent_id" id="" class="form-control @error('title') border border-danger @enderror">
+                    @if (!$category->parent_id)
+                    <option value=""> -- Select One --</option>
+                    @else
+                    <option value="{{ $category->parent->id }}">{{ $category->parent->title }}</option>
+                    @endif
+                    @foreach ($categories as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group my-2">
                 <label for="title">Category title<span class=text-danger>*</span></label>
                 <input type="text" name="title" id=""
                     class="form-control @error('title') border border-danger @enderror"

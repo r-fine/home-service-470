@@ -17,6 +17,15 @@
             </div>
             @endif
             <div class="form-group my-2">
+                <label for="parent_id">Parent category</label>
+                <select name="parent_id" id="parent_id" class="form-control @error('parent_id') border border-danger @enderror">
+                    <option value=""> -- Select One --</option>
+                    @foreach ($categories as $cat)
+                    <option value="{{ $cat->id }}" {{ old('parent_id') == $cat->id ? 'selected' : null }}>{{ $cat->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group my-2">
                 <label for="title">Category title<span class=text-danger>*</span></label>
                 <input type="text" name="title" id=""
                     class="form-control @error('title') border border-danger @enderror"
