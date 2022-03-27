@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [ShopController::class, 'index'])->name('home');
 
 // Routes for Service Provider
 Route::prefix('provider')->group(function () {
