@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('image')->nullable()->default('/images/500x500.png')->change();
+            $table->string('image')->nullable()->default('500x500.png')->change();
         });
     }
 

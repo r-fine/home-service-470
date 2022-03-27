@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('services', function (Blueprint $table) {
-            $table->string('image')->nullable()->default('/images/500x500.png')->change();
-            $table->renameColumn('name', 'title');
+            $table->string('image')->nullable()->default('500x500.png')->change();
         });
     }
 
