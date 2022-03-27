@@ -22,7 +22,7 @@
     <!-- Navbar Start -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" aria-current="page" href="#">
+            <a class="navbar-brand" aria-current="page" href="{{ route('home') }}">
                 <img src="{{URL::asset('/images/logo.png')}}" alt="brand logo"
                     style="aspect-ratio:367/366;height:65px;">
             </a>
@@ -167,16 +167,6 @@
             </svg>
         </a>
     </div>
-
-    <header class="bg-info py-5" style="margin-top: 5.5rem">
-        <div class="container px-4 px-lg-5 my-3">
-            <div class="text-center text-white">
-                <h1 class="display-3 fw-bolder">Tasker 470</h1>
-                <p class="lead fw-normal text-dark-50 mb-0 fs-4">Quality home services, on demand</p>
-            </div>
-        </div>
-        <span id="home"></span>
-    </header>
 
     <div id="start-from-navbar">
         @yield('content')
