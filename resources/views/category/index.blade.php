@@ -55,6 +55,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="container mt-4">
+            {{ $categories->links() }}
+        </div>
     </div>
     </section>
 
