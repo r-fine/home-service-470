@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ShopController::class, 'index'])->name('home');
+Route::get('/{service:slug}', [ShopController::class, 'showService'])->name('show.service');
 
 // Routes for Service Provider
 Route::prefix('provider')->group(function () {
