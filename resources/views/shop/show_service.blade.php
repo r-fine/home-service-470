@@ -1,5 +1,5 @@
 @extends('../layouts/base')
-@section('title', "{{ $service->title }}")
+@section('title', $title)
 
 @section('content')
 <div class="container">

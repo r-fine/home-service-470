@@ -16,6 +16,7 @@ class ShopController extends Controller
 
     public function showService(Service $service)
     {
-        return view('shop.show_service', compact('service'));
+        $title = $service->title;
+        return view('shop.show_service', compact('title', 'service'));
     }
 }
