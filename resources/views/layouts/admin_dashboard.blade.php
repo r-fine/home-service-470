@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="height:100vh">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="height:98vh">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <a class="navbar-brand ms-2" aria-current="page" href="/"><img src="{{ URL::asset('/images/logo.png' )}}" alt="brand logo" style="aspect-ratio:367/366;height:65px;width:80px;"></a>
                 <span class="fs-4 fw-bold ms-2">Admin Panel</span>
@@ -13,7 +13,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link link-dark">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#speedometer2" /></svg>
                         Dashboard
@@ -27,14 +27,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="{{ route('admin.categories.index') }}" class="nav-link link-dark">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#list" /></svg>
                         Categories
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="{{ route('admin.services.index') }}" class="nav-link link-dark">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#grid" /></svg>
                         Services

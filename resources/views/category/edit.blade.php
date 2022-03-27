@@ -5,10 +5,10 @@
 <section class="my-2 pt-3">
     <div class="mx-auto mb-5" style="max-width: 550px;">
         <hr>
-        <h1 class="text-center text-primary mb-3">Add Category</h1>
+        <h1 class="text-center text-primary mb-3">Edit Category</h1>
         <hr>
         {{-- <x-show-error /> --}}
-        <form method="POST" action="{{ route('admin.categories.update', $category->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.categories.update', $category) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             @if (Session::has('success'))
@@ -19,7 +19,7 @@
             @endif
             <div class="form-group my-2">
                 <label for="parent_id">Parent category</label>
-                <select name="parent_id" id="" class="form-control @error('title') border border-danger @enderror">
+                <select name="parent_id" id="" class="form-control @error('parent_id') border border-danger @enderror">
                     @if (!$category->parent_id)
                     <option value=""> -- Select One --</option>
                     @else

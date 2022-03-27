@@ -2,6 +2,9 @@
 @section('title', 'Home')
 
 @section('content')
+
+<x-header />
+
 <section class="pb-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="container mb-4">
@@ -27,7 +30,7 @@
                             <hr>
                             <!-- Product price-->
                             <div class="d-flex justify-content-center align-items-end">
-                                <a href="#" class="text-decoration-none">
+                                <a href="{{ route('show.service', $service) }}" class="text-decoration-none">
                                     <small class="text-primary fw-bolder fs-6 text-align-center">View Details</small>
                                 </a>
                             </div>
@@ -36,9 +39,9 @@
                 </div>
             </div>
             @endforeach
-            <div class="container">
-                {{ $services->links() }}
-            </div>
+        </div>
+        <div class="container">
+            {{ $services->links() }}
         </div>
     </div>
 </section>
