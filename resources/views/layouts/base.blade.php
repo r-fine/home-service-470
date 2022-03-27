@@ -48,7 +48,7 @@
                                 @if ($cat->hasChildren())
                                 <ul class="dropdown-menu children">
                                     @foreach ($cat->children as $child)
-                                    <a class="dropdown-item">{{ $child->title }}</a>
+                                    <a href="{{ route('category.list', $child) }}" class="dropdown-item">{{ $child->title }}</a>
                                     @endforeach
                                 </ul>
                                 @endif

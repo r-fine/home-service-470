@@ -19,4 +19,12 @@ class ShopController extends Controller
         $title = $service->title;
         return view('shop.show_service', compact('title', 'service'));
     }
+
+    // Show list of services under a specific category
+    public function categoryList(Category $category)
+    {
+        $title = $category->title;
+        $services = Service::where('category_id', $category->id)->simplePaginate(4);
+        return view('shop.category_list', compact('title', 'category', 'services'));
+    }
 }
