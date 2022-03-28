@@ -21,4 +21,9 @@ class Service extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
