@@ -155,7 +155,7 @@
     <!-- navbar end -->
 
     <div style="position:fixed;right:1%;top:46%;">
-        <a type="button" href="#" class="d-flex btn btn-warning justify-content-center align-items-center" id="Order"
+        <a type="button" href="{{ route('order.create') }}" class="d-flex btn btn-warning justify-content-center align-items-center" id="Order"
             style="height: 75px;width: 75px;">
             <sup class="text-danger fw-bold p-0 m-0 fs-6">2</sup>
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-bag-x me-1"

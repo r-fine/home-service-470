@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -15,9 +17,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+
+// Routes for Shop
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/{service:slug}', [ShopController::class, 'showService'])->name('show.service');
 Route::get('/category/{category}', [ShopController::class, 'categoryList'])->name('category.list');
+
+// Route for Order
+Route::prefix('order')->group(function () {
+    Route::name('order.')->group(function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('/place-order', [OrderController::class, 'create'])->name('create');
+            Route::post('/store', [OrderController::class, 'store'])->name('store');
+            Route::get('/add/{service:slug}', [OrderItemController::class, 'addToOrder'])->name('add.to.order');
+            Route::get('/remove/{order_item}', [OrderItemController::class, 'removeFromOrder'])->name('remove.from.order');
+        });
+    });
+});
 
 // Routes for Service Provider
 Route::prefix('provider')->group(function () {
@@ -39,6 +57,3 @@ Route::prefix('address')->group(function () {
         });
     });
 });
-
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
