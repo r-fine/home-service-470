@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('name')->unique();
+            $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('pricing')->nullable();
-            $table->binary('image')->nullable()->default('500x500.png');
+            $table->string('image')->nullable()->default('500x500.png');
             $table->boolean('is_active')->nullable()->default(true);
             $table->timestamps();
         });

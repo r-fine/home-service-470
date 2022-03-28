@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->binary('image')->nullable()->default('500x500.png');
+            $table->string('image')->nullable()->default('500x500.png');
             $table->timestamps();
         });
     }
