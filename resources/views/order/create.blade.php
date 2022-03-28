@@ -14,8 +14,24 @@
                 @endif
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Order List</span>
-                    <span class="badge bg-primary rounded-pill">0</span>
+                    <span class="badge bg-primary rounded-pill">{{ $item_count }}</span>
                 </h4>
+                <ul class="list-group mb-3">
+                    @forelse ($order_items as $item)
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="text-dark my-2">{{ $loop->iteration }}. {{ $item->service->title }}</h6>
+                        </div>
+                        <a class="text-danger my-2" href="{{ route('order.remove.from.order', $item) }}">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </li>
+                    @empty
+                    <div class="alert alert-danger">
+                        Your order list is empty!
+                    </div>
+                    @endforelse
+                </ul>
             </div>
             <div class="col-md-7 col-lg-8" style="max-width: 660px;">
                 <h4 class="text-primary fw-bold fs-3 mb-3">Billing address</h4>
