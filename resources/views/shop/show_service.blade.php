@@ -6,7 +6,13 @@
     <div class="row g-3 m-3 p-3 m-sm-3 p-sm-3 m-md-5 p-md-5 m-lg-5 p-lg-5">
         <div class="col-md-5 ps-3 col-lg-5 order-md-last p-0 order-1">
             <div class="d-grid gap-2">
-                <a href="#" class="btn btn-primary fs-6 mx-md-4 mt-1 mb-3">
+                @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ Session::get('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <a href="{{ route('order.add.to.order', $service) }}" class="btn btn-primary fs-6 mx-md-4 mt-1 mb-3">
                     <i class="bi bi-plus-square-fill"></i> Book this service
                 </a>
                 <button type="button" class="btn btn-outline-success mx-md-4">
@@ -18,11 +24,11 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                 Description
                             </button>
                         </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 {{ $service->description }}
