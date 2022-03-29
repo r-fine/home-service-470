@@ -33,6 +33,7 @@ Route::prefix('order')->group(function () {
             Route::post('/store', [OrderController::class, 'store'])->name('store');
             Route::get('/add/{service:slug}', [OrderItemController::class, 'addToOrder'])->name('add.to.order');
             Route::get('/remove/{order_item}', [OrderItemController::class, 'removeFromOrder'])->name('remove.from.order');
+            Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('history');
         });
     });
 });

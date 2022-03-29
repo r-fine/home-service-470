@@ -67,4 +67,11 @@ class OrderController extends Controller
 
         return back()->with('success', 'Your order has been placed successfully');
     }
+
+    public function orderHistory()
+    {
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+
+        return view('order.history', compact('orders'));
+    }
 }
