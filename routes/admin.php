@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,12 @@ Route::prefix('admin')->group(function () {
                 'categories' => CategoryController::class,
                 'services' => ServiceController::class,
             ]);
+            // Routes for Order management
+            Route::prefix('order')->group(function () {
+                Route::name('order.')->group(function () {
+                    Route::get('/order-list', [OrderController::class, 'index'])->name('index');
+                });
+            });
         });
     });
 });

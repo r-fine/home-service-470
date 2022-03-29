@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Order::latest()->paginate(5);
+        return view('order.index', compact('orders'));
+    }
+
     public function create()
     {
         $order_items = OrderItem::where([
