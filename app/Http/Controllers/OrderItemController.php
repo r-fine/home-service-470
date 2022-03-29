@@ -44,4 +44,25 @@ class OrderItemController extends Controller
             return back()->with('success', 'This order has been cancelled');
         }
     }
+
+    public function orderStatusAccepted(OrderItem $item)
+    {
+        $item->status = 'Accepted';
+        $item->update();
+        return back();
+    }
+
+    public function orderStatusPreparing(OrderItem $item)
+    {
+        $item->status = 'Preparing';
+        $item->update();
+        return back();
+    }
+
+    public function orderStatusCompleted(OrderItem $item)
+    {
+        $item->status = 'Completed';
+        $item->update();
+        return back();
+    }
 }

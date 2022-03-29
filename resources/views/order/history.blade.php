@@ -36,7 +36,7 @@
                     </div>
                     @if ($item->status == 'Pending' || $item->status == 'Accepted' || $item->status == 'Preparing')
                     <div>
-                        <a href="{{ route('admin.order.cancel', $item) }}" type="button" class="btn btn-sm btn-outline-danger"
+                        <a href="{{ route('order.cancel', $item) }}" type="button" class="btn btn-sm btn-outline-danger"
                             onclick="return confirm('Are you sure you want to cancel this order?')">
                             cancel
                         </a>

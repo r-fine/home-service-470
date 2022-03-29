@@ -25,7 +25,9 @@ Route::prefix('admin')->group(function () {
             Route::prefix('order')->group(function () {
                 Route::name('order.')->group(function () {
                     Route::get('/order-list', [OrderController::class, 'index'])->name('index');
-                    Route::get('/cancel/{item}', [OrderItemController::class, 'orderCancel'])->name('cancel');
+                    Route::get('/accept/{item}', [OrderItemController::class, 'orderStatusAccepted'])->name('accept');
+                    Route::get('/prepare/{item}', [OrderItemController::class, 'orderStatusPreparing'])->name('prepare');
+                    Route::get('/complete/{item}', [OrderItemController::class, 'orderStatusCompleted'])->name('complete');
                 });
             });
         });

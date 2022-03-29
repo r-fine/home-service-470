@@ -34,6 +34,7 @@ Route::prefix('order')->group(function () {
             Route::get('/add/{service:slug}', [OrderItemController::class, 'addToOrder'])->name('add.to.order');
             Route::get('/remove/{order_item}', [OrderItemController::class, 'removeFromOrder'])->name('remove.from.order');
             Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('history');
+            Route::get('/cancel/{item}', [OrderItemController::class, 'orderCancel'])->name('cancel');
         });
     });
 });

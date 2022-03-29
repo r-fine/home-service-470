@@ -47,10 +47,10 @@
                 </tr>
                 <tr>
                     <td colspan="6" class="p-0">
-                        <div id="accordion{{$order->id}}" class="accordian-body collapse my-2">
+                        <div id="accordion{{$order->id}}" class="accordian-body collapse show my-2">
                             <div class="d-flex mb-2 text-secondary fw-bold justify-content-around">
                                 <div>Service</div>
-                                <div>delete/edit</div>
+                                <div>edit</div>
                                 <div>Change status</div>
                             </div>
                             @foreach ($order->order_items as $item)
@@ -68,29 +68,19 @@
                                     @endif">
                                     {{ $item->status }}
                                 </div>
-                                @if ($item->status == 'Pending' || $item->status == 'Accepted' || $item->status == 'Preparing')
-                                <div class="ms-5 ps-5">
-                                    <a href="#" type="button"
-                                        class="text-danger"
-                                        onclick="return confirm('Are you sure you want to cancel this order?')">
-                                        <i class="bi bi-x-circle"></i></a>
-                                </div>
-                                @else
-                                <div class="ms-3"></div>
-                                @endif
-                                <div class="me-5">
+                                <div class="mx-5">
                                     <a href="#" class="btn btn-sm">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                 </div>
                                 <div class="btn-group ms-5">
-                                    <a href="#" type="button"
+                                    <a href="{{ route('admin.order.accept', $item) }}" type="button"
                                         class="btn btn-sm btn-outline-primary">Accepted</a>
-                                    <a href="#" type="button"
+                                    <a href="{{ route('admin.order.prepare', $item) }}" type="button"
                                         class="btn btn-sm btn-outline-info">Preparing</a>
-                                    <a href="#" type="button"
+                                    <a href="{{ route('admin.order.complete', $item) }}" type="button"
                                         class="btn btn-sm btn-outline-success">Completed</a>
-                                    <a href="#" type="button"
+                                    <a href="{{ route('order.cancel', $item) }}" type="button"
                                         class="btn btn-sm btn-outline-danger">Cancelled</a>
                                 </div>
                             </div>
@@ -99,7 +89,7 @@
                         </div>
                     </td>
                     <td colspan="6" class="p-0">
-                        <div id="accordion{{$order->id}}" class="accordian-body collapse my-2">
+                        <div id="accordion{{$order->id}}" class="accordian-body collapse show my-2">
                             <div class="d-flex text-primary fw-bold justify-content-around mb-2">Category</div>
                             @foreach ($order->order_items as $item)
                             <div class="d-flex justify-content-around align-items-center">
