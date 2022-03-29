@@ -1,5 +1,5 @@
 @extends('../layouts/base')
-@section('title', 'Place order')
+@section('title', 'Order history')
 
 @section('content')
 <section class="py-5">
@@ -26,22 +26,23 @@
                             width="50px" height="50px">
                     </div>
                     <div>{{ $item->service->title }}</div>
-                    <div class="badge rounded-pill bg-@if ($item->status == 'Pending')secondary
+                    <div class="badge rounded-pill ms-auto me-3 bg-@if ($item->status == 'Pending')secondary
                         @elseif($item->status == 'Accepted')primary
                         @elseif ($item->status == 'Preparing')info
                         @elseif ($item->status == 'Completed')success
                         @elseif ($item->status == 'Cancelled')danger
-                        @endif ms-auto me-3">
+                        @endif">
                         {{ $item->status }}
                     </div>
                     @if ($item->status == 'Pending' || $item->status == 'Accepted' || $item->status == 'Preparing')
                     <div>
-                        <a href="#" type="button" class="text-danger"
+                        <a href="{{ route('admin.order.cancel', $item) }}" type="button" class="btn btn-sm btn-outline-danger"
                             onclick="return confirm('Are you sure you want to cancel this order?')">
-                            <i class="bi bi-x-circle"></i>
+                            cancel
                         </a>
                     </div>
                     @else
+                    <div class="ms-5"></div>
                     <div class="ms-3"></div>
                     @endif
                 </div>

@@ -33,4 +33,15 @@ class OrderItemController extends Controller
         $order_item->delete();
         return back()->with('success', 'Removed from list');
     }
+
+    public function orderCancel(OrderItem $item)
+    {
+        if ($item->status == 'Preparing') {
+            return back()->with('success', 'You cannot cancel this order. Its already on progress');
+        } else {
+            $item->status = 'Cancelled';
+            $item->update();
+            return back()->with('success', 'This order has been cancelled');
+        }
+    }
 }
