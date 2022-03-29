@@ -26,10 +26,11 @@ class Order extends Model
 
     protected $casts = [
         'is_ordered' => 'boolean',
-        'date' => 'date:Y-m-d'
+        'date' => 'date:Y-m-d',
+        'created_at' => 'datetime',
     ];
 
-    public function items()
+    public function order_items()
     {
         return $this->hasMany(OrderItem::class);
     }
