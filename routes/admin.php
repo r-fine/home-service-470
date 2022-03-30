@@ -28,6 +28,9 @@ Route::prefix('admin')->group(function () {
                     Route::get('/accept/{item}', [OrderItemController::class, 'orderStatusAccepted'])->name('accept');
                     Route::get('/prepare/{item}', [OrderItemController::class, 'orderStatusPreparing'])->name('prepare');
                     Route::get('/complete/{item}', [OrderItemController::class, 'orderStatusCompleted'])->name('complete');
+                    Route::get('/{order}/edit', [OrderController::class, 'edit'])->name('edit');
+                    Route::put('/{order}', [OrderController::class, 'update'])->name('update');
+                    Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy');
                 });
             });
         });

@@ -56,7 +56,6 @@ class OrderController extends Controller
         $order->town_city = $request->town_city;
         $order->date = $request->date;
         $order->time = $request->time;
-        $order->order_note = 'sdsd';
         $order->order_number = substr($request->phone, 7) . time();
         $order->save();
 
@@ -79,5 +78,51 @@ class OrderController extends Controller
         $orders = Order::where('user_id', Auth::user()->id)->get();
 
         return view('order.history', compact('orders'));
+    }
+
+    public function edit(Order $order)
+    {
+        $times = ['9:00 a.m.', '10:00 a.m.', '11:00 a.m.', '12:00 p.m.', '01:00 p.m.', '02:00 p.m', '03:00 p.m', '04:00 p.m', '05:00 p.m', '06:00 p.m', '07:00 p.m', '08:00 p.m'];
+        $town_cities = ['Abdullahpur', 'Agargaon', 'Badda', 'Banani', 'Banasree', 'Baridhara', 'Bashundhara', 'Bawnia', 'Cantonment area', 'Dakshinkhan', 'Dania', 'Demra', 'Dhanmondi', 'Farmgate', 'Gabtali', 'Gulshan', 'Hazaribagh', 'Islampur', 'Jurain', 'Kafrul', 'Kamalapur', 'Kamrangirchar', 'Kazipara', 'Khilgaon', 'Kotwali', 'Lalbagh', 'Matuail', 'Mirpur', 'Mohakhali', 'Mohammadpur', 'Motijheel', 'Nimtoli', 'Pallabi', 'Paltan', 'Ramna', 'Sabujbagh', 'Sabujbagh', 'Sadarghat', 'Satarkul', 'Shahbagh', 'Sher-e-Bangla Nagar', 'Shyampur', 'Sutrapur', 'Tejgaon', 'Uttara', 'Uttarkhan', 'Vatara', 'Wari'];
+
+        return view('order.edit', compact('order', 'times', 'town_cities'));
+    }
+
+    public function update(Request $request, Order $order)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required|digits:11',
+            'email' => 'required|email',
+            'address_line' => 'required',
+            'address_line_2' => 'nullable',
+            'town_city' => 'required',
+            'date' => 'required|date',
+            'time' => 'required',
+            'order_note' => 'nullable'
+        ]);
+
+        $order->update([
+            'user_id' => Auth::user()->id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address_line' => $request->address_line,
+            'address_line_2' => $request->address_line_2,
+            'town_city' => $request->town_city,
+            'date' => $request->date,
+            'time' => $request->time,
+            'order_number' => substr($request->phone, 7) . time(),
+        ]);
+
+        return back()->with('success', 'Order updated successfully');
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return back()->with('succcess', 'Order deleted successfully');
     }
 }

@@ -35,12 +35,17 @@
                         <div class="btn-group">
                             <a href="#" type="button" class="btn btn-sm btn-outline-dark accordion-toggle"
                                 data-bs-toggle="collapse" data-bs-target="#accordion{{$order->id}}">Details</a>
-                            <a href="#" type="button"
-                                class="btn btn-sm btn-outline-danger"
-                                onclick="return confirm('Are you sure you want to delete this order?')">
-                                Delete
-                            </a>
-                            <a href="#" type="button"
+                            <button class="btn btn-link m-0 p-0">
+                                <form method="POST" action="{{ route('admin.order.destroy', $order) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this order?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </button>
+                            <a href="{{ route('admin.order.edit', $order) }}" type="button"
                                 class="btn btn-sm btn-outline-secondary">Edit</a>
                         </div>
                     </td>
@@ -55,12 +60,11 @@
                             </div>
                             @foreach ($order->order_items as $item)
                             <div class="d-flex align-items-center">
-                                <div><img class="me-3" src="{{ asset('images/service/' . $item->service->image) }}" alt="s img" width="50px"
-                                        height="50px">
+                                <div><img class="me-3" src="{{ asset('images/service/' . $item->service->image) }}"
+                                        alt="s img" width="50px" height="50px">
                                 </div>
                                 <div class="">{{ $item->service->title }}</div>
-                                <div
-                                    class="badge rounded-pill my-auto bg-@if ($item->status == 'Pending')secondary
+                                <div class="badge rounded-pill my-auto bg-@if ($item->status == 'Pending')secondary
                                     @elseif ($item->status == 'Accepted')primary
                                     @elseif ($item->status == 'Preparing')info
                                     @elseif ($item->status == 'Completed')success
