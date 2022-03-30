@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('order_id')->nullable()->references('id')->on('orders')->onDelete('cascade');
-            $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreignId('service_id')->nullable()->references('id')->on('services')->onDelete('cascade');
             $table->boolean('is_ordered')->nullable()->default(false);
             $table->string('status')->nullable()->default('Pending');
             $table->boolean('is_reviewable')->nullable()->default(false);
