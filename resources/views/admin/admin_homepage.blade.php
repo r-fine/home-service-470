@@ -12,7 +12,7 @@
                         <h4 class="card-title">Total Orders</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $order_count }}</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                         <h4 class="card-title">Orders Completed</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $order_completed }}</h1>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         <h4 class="card-title">Orders Pending</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $order_pending }}</h1>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <h4 class="card-title">Total Providers</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $provider_count }}</h1>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <h4 class="card-title">Total Services</h4>
                     </div>
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <h1 class="card-title">0</h1>
+                        <h1 class="card-title">{{ $service_count }}</h1>
                     </div>
                 </div>
             </div>
