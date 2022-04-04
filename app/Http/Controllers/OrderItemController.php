@@ -62,6 +62,7 @@ class OrderItemController extends Controller
     public function orderStatusCompleted(OrderItem $item)
     {
         $item->status = 'Completed';
+        $item->is_reviewable = true;
         $item->update();
         return back();
     }
