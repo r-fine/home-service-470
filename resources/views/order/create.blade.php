@@ -175,7 +175,9 @@
                     </div>
 
                     <hr class="my-4">
+                    @if ($item_count)
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
+                    @endif
                 </form>
             </div>
         </div>
