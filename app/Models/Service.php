@@ -26,4 +26,20 @@ class Service extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(ReviewRating::class);
+    }
+
+    public function avgReviewRating()
+    {
+        $value = $this->reviews()->avg('rating');
+        return round($value, 1);
+    }
+
+    public function countReviewRating()
+    {
+        return $this->reviews()->count();
+    }
 }
