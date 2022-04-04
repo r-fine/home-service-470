@@ -173,7 +173,8 @@
                                         @enderror
                                     </div>
                                     @guest
-                                    <span class="text-danger">please <a href="{{ route('login') }}">login in</a> to review</span>
+                                    <span class="text-danger">please <a href="{{ route('login') }}">login in</a> to
+                                        review</span>
                                     @endguest
                                     @auth
                                     @if ($reviewable)
@@ -204,17 +205,11 @@
                                     {{ $my_review->created_at }}
                                 </small>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-start">
                                 <div>
                                     <p class="mb-1">
                                         <x-rating-stars :review="$my_review" />
                                     </p>
-                                </div>
-                                <div>
-                                    <a href="#" type="button" class="text-danger me-2"
-                                        onclick="return confirm('Are you sure you want to delete this review?')">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
                                 </div>
                             </div>
                             <p class="mb-1"><span class="fs-4 fw-bold">"</span>{{ $my_review->title }}<span
@@ -223,6 +218,17 @@
                             <p class="mb-1">
                                 {{ $my_review->description }}
                             </p>
+                            <div class="d-flex justify-content-end">
+                                <form method="POST" action="{{ route('review.destroy', $my_review) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this review?')"
+                                        style="padding: .25rem .4rem; font-size: .875rem; line-height: .5; border-radius: .2rem;">
+                                        delete
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                         @endif
                         <div class="overflow-auto mt-5" style="height: 800px;">
@@ -242,25 +248,12 @@
                                         <small class="text-muted">on:
                                             {{ $review->created_at }}
                                     </div>
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-start">
                                         <div>
                                             <p class="mb-1">
                                                 <x-rating-stars :review="$review" />
                                             </p>
                                         </div>
-                                        @guest
-                                        <div></div>
-                                        @endguest
-                                        @auth
-                                        @if (Auth::user()->hasRole('admin'))
-                                        <div>
-                                            <a href="#" type="button" class="text-danger me-2"
-                                                onclick="return confirm('Are you sure you want to delete this review?')">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </a>
-                                        </div>
-                                        @endif
-                                        @endauth
                                     </div>
                                     <p class="mb-1"><span class="fs-4 fw-bold">"</span>{{ $review->title }}<span
                                             class="fs-4 fw-bold">"</span>
@@ -268,6 +261,24 @@
                                     <p class="mb-1">
                                         {{ $review->description }}
                                     </p>
+                                    @guest
+                                    <div></div>
+                                    @endguest
+                                    @auth
+                                    @if (Auth::user()->hasRole('admin'))
+                                    <div class="d-flex justify-content-end">
+                                        <form method="POST" action="{{ route('review.destroy', $review) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                onclick="return confirm('Are you sure you want to delete this review?')"
+                                                style="padding: .25rem .4rem; font-size: .875rem; line-height: .5; border-radius: .2rem;">
+                                                delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                    @endauth
                                 </div>
                             </div>
                             @empty

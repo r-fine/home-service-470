@@ -15,6 +15,7 @@ require __DIR__ . '/admin.php';
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/{service:slug}', [ShopController::class, 'showService'])->name('show.service');
 Route::post('/{service:slug}/review', [ReviewRatingController::class, 'store'])->name('review.store');
+Route::delete('/{reviewRating}', [ReviewRatingController::class, 'destroy'])->name('review.destroy');
 Route::get('/category/{category}', [ShopController::class, 'categoryList'])->name('category.list');
 
 // Route for Order

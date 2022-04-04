@@ -31,5 +31,7 @@ class ReviewRatingController extends Controller
 
     public function destroy(ReviewRating $reviewRating)
     {
+        $reviewRating->delete();
+        return back()->with('success', 'Review deleted');
     }
 }
