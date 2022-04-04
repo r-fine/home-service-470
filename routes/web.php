@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\ReviewRatingController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,7 @@ require __DIR__ . '/admin.php';
 // Routes for Shop
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/{service:slug}', [ShopController::class, 'showService'])->name('show.service');
+Route::post('/{service:slug}/review', [ReviewRatingController::class, 'store'])->name('review.store');
 Route::get('/category/{category}', [ShopController::class, 'categoryList'])->name('category.list');
 
 // Route for Order
