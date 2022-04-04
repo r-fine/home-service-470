@@ -21,11 +21,14 @@ class ServiceFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->words(5, true);
+        $slug = Str::slug($title);
+
         return [
             'category_id' => Category::whereNotNull('parent_id')->inRandomOrder()->first()->id,
-            'title' => $this->faker->words(5, true),
-            'slug' => Str::slug($this->faker->words(5, true)),
-            'description' => $this->faker->words(150, true),
+            'title' => $title,
+            'slug' => $slug,
+            'description' => $this->faker->words(75, true),
             'pricing' => $this->faker->words(20, true),
         ];
     }

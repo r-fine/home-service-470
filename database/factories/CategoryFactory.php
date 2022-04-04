@@ -20,10 +20,14 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+
+        $title = $this->faker->words(3, true);
+        $slug = Str::slug($title);
+
         return [
             'parent_id' => Category::whereNull('parent_id')->inRandomOrder()->first()->id,
-            'title' => $this->faker->words(3, true),
-            'slug' => Str::slug($this->faker->words(3, true)),
+            'title' => $title,
+            'slug' => $slug,
             'description' => $this->faker->words(50, true),
         ];
     }
