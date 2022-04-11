@@ -43,7 +43,7 @@ Route::prefix('order')->group(function () {
 Route::prefix('provider')->group(function () {
     Route::name('provider.')->group(function () {
         Route::group(['middleware' => ['auth', 'role:s_provider']], function () {
-            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/dashboard', [DashboardController::class, 'sProvider'])->name('dashboard');
         });
     });
 });
