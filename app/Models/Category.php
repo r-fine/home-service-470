@@ -58,4 +58,9 @@ class Category extends Model
     {
         return $this->hasMany(Service::class);
     }
+
+    public function providers()
+    {
+        return $this->hasMany(ProviderProfile::class);
+    }
 }

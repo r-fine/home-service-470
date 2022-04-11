@@ -29,4 +29,14 @@ class ProviderProfile extends Model
     {
         return $this->address_line . ' ' . $this->address_line_2;
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
