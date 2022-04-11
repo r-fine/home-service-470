@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\ReviewRatingController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -47,14 +48,15 @@ Route::prefix('provider')->group(function () {
     });
 });
 
-//auth route for Address CRUD operations
-Route::prefix('address')->group(function () {
-    Route::name('address.')->group(function () {
+// Routes fot ProviderProfile CRUD operations
+Route::prefix('s-provider')->group(function () {
+    Route::name('s_provider.')->group(function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::get('/create', [AddressController::class, 'create'])->name('create');
-            Route::post('/store', [AddressController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [AddressController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [AddressController::class, 'update'])->name('update');
+            Route::get('/create', [ProviderProfileController::class, 'create'])->name('create');
+            Route::post('/store', [ProviderProfileController::class, 'store'])->name('store');
+            Route::get('/{profile}/edit', [ProviderProfileController::class, 'edit'])->name('edit');
+            Route::put('/{profile}', [ProviderProfileController::class, 'update'])->name('update');
+            Route::delete('/{profile}', [ProviderProfileController::class, 'destroy'])->name('destroy');
         });
     });
 });
