@@ -70,7 +70,7 @@ class OrderController extends Controller
             $item->save();
         }
 
-        return back()->with('success', 'Your order has been placed successfully');
+        return redirect()->route('order.history')->with('success', 'Your order has been placed successfully');
     }
 
     public function orderHistory()
