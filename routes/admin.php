@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +32,12 @@ Route::prefix('admin')->group(function () {
                     Route::get('/{order}/edit', [OrderController::class, 'edit'])->name('edit');
                     Route::put('/{order}', [OrderController::class, 'update'])->name('update');
                     Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy');
+                    Route::get('/{item}/assign/provider', [OrderItemController::class, 'edit'])->name('item.edit');
+                    Route::put('/item/{item}', [OrderItemController::class, 'assignProvider'])->name('item.assign.provider');
                 });
             });
+            Route::get('s-provider/list', [ProviderProfileController::class, 'index'])->name('s_provider.index');
+            Route::delete('s-provider/{profile}', [ProviderProfileController::class, 'destroy'])->name('s_provider.destroy');
         });
     });
 });

@@ -12,7 +12,8 @@ class ProviderProfileController extends Controller
 {
     public function index()
     {
-        //
+        $providers = ProviderProfile::latest()->paginate(10);
+        return view('s_provider.index', compact('providers'));
     }
 
     public function create()

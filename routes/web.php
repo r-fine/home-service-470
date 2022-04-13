@@ -56,7 +56,6 @@ Route::prefix('s-provider')->group(function () {
             Route::post('/store', [ProviderProfileController::class, 'store'])->name('store');
             Route::get('/{profile}/edit', [ProviderProfileController::class, 'edit'])->name('edit');
             Route::put('/{profile}', [ProviderProfileController::class, 'update'])->name('update');
-            Route::delete('/{profile}', [ProviderProfileController::class, 'destroy'])->name('destroy');
         });
     });
 });
