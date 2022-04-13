@@ -14,6 +14,7 @@
         <div class="container my-3">
             <table class="table table-bordered">
                 <tr>
+                    <th>#</th>
                     <th>Id</th>
                     <th>Full Name</th>
                     <th>Phone</th>
@@ -22,18 +23,18 @@
                 </tr>
                 @foreach ($users as $u)
                 <tr>
-                    <td>{{ $u->id }}</td>
-                    <td>{{ $u->address->full_name }}</td>
-                    <td>{{ $u->address->phone }}</td>
-                    <td>{{ $u->address->getFullAddress() }}</td>
+                    @if ($u->providerProfile)
+                    <td><img src="{{ asset('images/s_provider/' . $u->providerProfile->profile_pic) }}" alt="image" style="height:30px; width:50px"></td>
+                    <td>{{ $u->providerProfile->id }}</td>
+                    <td>{{ $u->providerProfile->getFullName() }}</td>
+                    <td>{{ $u->providerProfile->phone }}</td>
+                    <td>{{ $u->providerProfile->getFullAddress() }}</td>
                     <td>
-                        {{-- <form action="{{ route('verify.user', $u->id) }}" method="POST">
-        
-                        </form> --}}
                         <a href="{{ route('admin.verify.user', $u->id) }}" class="text-success fs-3">
                             <i class="bi bi-check-square-fill"></i>
                         </a>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </table>
