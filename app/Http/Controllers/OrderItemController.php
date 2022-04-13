@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderItem;
+use App\Models\ProviderProfile;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,5 +67,24 @@ class OrderItemController extends Controller
         $item->is_reviewable = true;
         $item->update();
         return back();
+    }
+
+    public function edit(OrderItem $item)
+    {
+        $providers = ProviderProfile::where('category_id', $item->service->category->parent->id)
+            ->whereIn('user_id', User::where('is_verified', 1)->get('id'))
+            ->get();
+        return view('order_item.edit', compact('item', 'providers'));
+    }
+
+    public function assignProvider(Request $request, OrderItem $item)
+    {
+        $request->validate([
+            'provider_id' => 'required'
+        ]);
+
+        $item->update($request->all());
+
+        return back()->with('success', 'Provider assigned successfully');
     }
 }

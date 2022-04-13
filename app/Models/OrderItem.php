@@ -12,6 +12,7 @@ class OrderItem extends Model
     protected $fillable = [
         'user_id',
         'service_id',
+        'provider_id',
     ];
 
     protected $casts = [
@@ -27,5 +28,10 @@ class OrderItem extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(ProviderProfile::class);
     }
 }

@@ -55,7 +55,7 @@
                         <div id="accordion{{$order->id}}" class="accordian-body collapse show my-2">
                             <div class="d-flex mb-2 text-secondary fw-bold justify-content-around">
                                 <div>Service</div>
-                                <div>edit</div>
+                                <div>Status</div>
                                 <div>Change status</div>
                             </div>
                             @foreach ($order->order_items as $item)
@@ -64,18 +64,13 @@
                                         alt="s img" width="50px" height="50px">
                                 </div>
                                 <div class="">{{ $item->service->title }}</div>
-                                <div class="badge rounded-pill my-auto bg-@if ($item->status == 'Pending')secondary
+                                <div class="badge rounded-pill ms-auto me-5 bg-@if ($item->status == 'Pending')secondary
                                     @elseif ($item->status == 'Accepted')primary
                                     @elseif ($item->status == 'Preparing')info
                                     @elseif ($item->status == 'Completed')success
                                     @elseif ($item->status == 'Cancelled')danger
                                     @endif">
                                     {{ $item->status }}
-                                </div>
-                                <div class="mx-5">
-                                    <a href="#" class="btn btn-sm">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
                                 </div>
                                 <div class="btn-group ms-5">
                                     <a href="{{ route('admin.order.accept', $item) }}" type="button"
@@ -94,11 +89,21 @@
                     </td>
                     <td colspan="6" class="p-0">
                         <div id="accordion{{$order->id}}" class="accordian-body collapse show my-2">
-                            <div class="d-flex text-primary fw-bold justify-content-around mb-2">Category</div>
+                            <div class="d-flex text-primary fw-bold justify-content-around mb-2">Assigned provider</div>
                             @foreach ($order->order_items as $item)
                             <div class="d-flex justify-content-around align-items-center">
                                 <div class="my-3">
-                                    {{ $item->service->category->title }}
+                                    @if ($item->provider)
+                                    {{ $item->provider->getFullName() }} ({{ $item->provider->id }}) 
+                                    <a href="{{ route('admin.order.item.edit', $item) }}" class="btn btn-sm">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    @else
+                                    n/a 
+                                    <a href="{{ route('admin.order.item.edit', $item) }}" class="btn btn-sm">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    @endif
                                     <div class="my-2"></div>
                                 </div>
                             </div>
